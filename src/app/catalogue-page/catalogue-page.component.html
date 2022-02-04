@@ -8,7 +8,7 @@
         <ng-template #caught>
         <h3>{{ pokemon.name }} - {{ pokemon.id }}</h3>  
         <img src={{pokemon.imageurl}} alt="Image of Pokemon">
-        <button class="button-caught" (click)="handleCatchPokemon(pokemon.name)">{{ pokemon.name }} is caught!</button>
+        <button class="button-caught" (click)="handleCaughtPokemon(pokemon.name)">{{ pokemon.name }} is caught!</button>
         </ng-template>
         <ng-template #free>
             <h3>{{ pokemon.name }} - {{ pokemon.id }}</h3>  

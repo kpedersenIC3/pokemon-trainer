@@ -1,9 +1,13 @@
 <h1>From API</h1>
 <p>Welcome {{trainer?.username}}</p>
 <p>You have caught:</p>
-<ul>
-    <li>{{trainer?.pokemon}}</li>
+<ul *ngFor="let pokemon of pokemoninfo">
+    <ng-container *ngIf="checkIfCaught(pokemon.name); then caught;"></ng-container>
+    <ng-template #caught>
+    <li>
+        <h3>{{ pokemon.name }} - {{ pokemon.id }}</h3>  
+        <img src={{pokemon.imageurl}} alt="Image of Pokemon">
+    </li>
+    </ng-template>
 </ul>
-<h1>From local storage</h1>
-<p>Current user is {{ currenttrainer.username }}</p>
-<button (click)="handleLogOut()">Log out</button>
+<button (click)="handleLogOut()">Log out</button><button (click)="gotoCatalogue()">Catch some more!!</button>
