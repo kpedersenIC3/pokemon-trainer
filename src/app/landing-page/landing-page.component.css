@@ -1,3 +1,27 @@
 .user-input-error {
-    color: rgb(255, 36, 36);
+  color: rgb(255, 36, 36);
+}
+
+.sign-in-button {
+  position: absolute;
+  transform: translate(426px, -60.5px);
+}
+
+.welcome-msg {
+  font-family: "Press Start 2P", cursive;
+  color: #000;
+}
+
+.login-form {
+  margin-left: 300px;
+  margin-top: 100px;
+  font-family: "Press Start 2P", cursive;
+}
+
+.form-control {
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: larger;
+  width: 420px;
 }

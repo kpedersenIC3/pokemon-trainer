@@ -1,21 +1,39 @@
-<h1>Pokemons</h1>
 
 
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="https://youtu.be/rg6CiPI6h2g?t=6">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="" class="d-inline-block align-text-top">
+    </a>
+    <h1>Pokemon</h1>
+    <ul class="navbar-nav" routerLinkActive="active">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" routerLink="/trainer">My Collection</a>
+      </li>
+    </ul>
+    
+  </div>
+</nav>
 
-<ul *ngFor="let pokemon of pokemoninfo">
-    <li>
-        <ng-container *ngIf="checkIfCaught(pokemon.name); then caught; else free"></ng-container>
-        <ng-template #caught>
-        <h3>{{ pokemon.name }} - {{ pokemon.id }}</h3>  
-        <img src={{pokemon.imageurl}} alt="Image of Pokemon">
-        <button class="button-caught" (click)="handleCaughtPokemon(pokemon.name)">{{ pokemon.name }} is caught!</button>
-        </ng-template>
-        <ng-template #free>
-            <h3>{{ pokemon.name }} - {{ pokemon.id }}</h3>  
-            <img src={{pokemon.imageurl}} alt="Image of Pokemon">
-            <button class="button-free" (click)="handleCatchPokemon(pokemon.name)">Catch {{ pokemon.name }}!</button>
-        </ng-template>
-    </li>
-</ul>
+<div class="container">
+  <div class="card-group">
+    <div class="row">
+      <div class="card col-md-2" *ngFor="let pokemon of pokemoninfo">
+        <img class="card-img-top" [src]="pokemon.imageurl" [alt]="pokemon.name">
+        <div class="card-body">
+          <ng-container *ngIf="checkIfCaught(pokemon.name); then caught; else free"></ng-container>
+          <ng-template #caught>
+          <button class="btn btn-danger" (click)="handleCaughtPokemon(pokemon.name)">{{ pokemon.name }} is caught!</button>
+          </ng-template>
+          <ng-template #free>
+          <button class="btn btn-success" (click)="handleCatchPokemon(pokemon.name)">Catch {{ pokemon.name }}!</button>
+          </ng-template>
+        </div>
+      </div>
+    </div>
 
-<button (click)="clickToProfile()">Go to profile</button>
+  </div>
+</div>
+
+<!-- <button class="btn btn-primary" (click)="clickToProfile()">Go to profile</button> -->
+

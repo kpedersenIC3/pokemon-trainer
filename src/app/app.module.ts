@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,23 +9,28 @@ import { AppComponent } from './app.component';
 import { TrainerPageComponent } from './trainer-page/trainer-page.component';
 import { CataloguePageComponent } from './catalogue-page/catalogue-page.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 @NgModule({
   declarations: [
     AppComponent,
     TrainerPageComponent,
     CataloguePageComponent,
-    LandingPageComponent
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    CarouselModule.forRoot(),
+    ButtonsModule.forRoot(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,13 +1,6 @@
-import {
-  HttpClient,
-  HttpContext,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Trainer } from '../models/trainer.model';
-import { catchError, map, tap, finalize } from 'rxjs/operators';
-import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -27,14 +20,6 @@ export class TrainersService {
     }),
   };
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      console.log(`${operation} failed: ${error.message}`);
-      return of(result as T);
-    };
-  }
-
   public fetchTrainer(username: string): void {
     this.http
       .get<Trainer[]>(this._trainerURL + `?username=` + username)
@@ -53,11 +38,20 @@ export class TrainersService {
       });
   }
 
-  public updateTrainer(trainer: Trainer): Observable<any> {
-    return this.http.put(this._trainerURL, trainer, this._httpOptions).pipe(
-      tap((_) => console.log(_)),
-      catchError(this.handleError<any>('updateHero'))
-    );
+  public updateTrainer(trainer: Trainer): void {
+    console.log('updating trainer:', trainer);
+    this.http
+      .put<any>(
+        this._trainerURL + '/' + trainer.id,
+        {
+          username: trainer.username,
+          pokemon: [...trainer.pokemon],
+        },
+        this._httpOptions
+      )
+      .subscribe((data) => {
+        this.fetchTrainer(data.username);
+      });
   }
 
   public addTrainer(username: string): void {

@@ -1,22 +1,53 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  min-height: 100%;
+}
+body {
+  min-height: 100%;
+  font-family: "Sanchez", serif;
+  background-image: linear-gradient(
+    180deg,
+    rgb(209, 38, 38) 48%,
+    black 48% 52%,
+    #fdfdfd 52%
+  );
 }
 
-head, body, h1, p, input, form, button {
-    font-family: 'Sanchez', serif;
+head,
+p,
+input,
+form,
+button {
+  font-family: "Sanchez", serif;
+}
+
+.button-caught {
+  background-color: red;
+}
+
+.button-free {
+  background-color: green;
 }
 
 img {
-    width: 100px;
+  width: 60px;
 }
 
-
-.button-caught{
-    background-color: red;
+h1,
+h3 {
+  font-family: "Press Start 2P", cursive;
+  color: #fdfdfd;
 }
 
-.button-free{
-    background-color: green;
+.nav-item {
+  font-family: "Sanchez", serif;
+  font-size: larger;
+}
+
+.navbar {
+  margin-bottom: 10px;
 }
