@@ -12,11 +12,13 @@ import { PokemonInfo } from '../models/pokemon.model';
 })
 export class TrainerPageComponent implements OnInit {
   constructor(
-    private readonly trainerService: TrainersService,
-    private readonly pokemonService: PokemonsService,
+    private readonly trainersservice: TrainersService,
+    private readonly pokemonsservice: PokemonsService,
     private readonly router: Router
   ) {}
-
+  //On page load redirect to
+  // landing page if user is not in localStorage, otherwise get
+  // the trainer from trainerService
   ngOnInit(): void {
     if (localStorage.getItem('currentTrainer') === null) {
       this.router.navigate(['landing']);
@@ -24,49 +26,49 @@ export class TrainerPageComponent implements OnInit {
       this.trainer;
     }
   }
-
+  //getter to get the current trainer from the trainers service
   get trainer(): Trainer | null {
-    return this.trainerService.trainer();
+    return this.trainersservice.trainer();
   }
-
+  //getter for the trainer in localStorage
   get currenttrainer(): Trainer {
     return JSON.parse(localStorage.getItem('currentTrainer') || '{}');
   }
-
+  //getter to get pokemon info from  pokemons service
   get pokemoninfo(): PokemonInfo[] | undefined {
-    console.log('getting pokemon info');
-    return this.pokemonService.getPokemonInfo();
+    return this.pokemonsservice.getPokemonInfo();
   }
 
+  //When logging out, the localStorage is cleared and the landing page is loaded.
   public handleLogOut(): void {
     localStorage.clear();
-    console.log(localStorage);
     this.router.navigate(['landing']);
   }
 
+  //When deleting a pokemon from collection, update the localStorage and
+  // update the API.
   public handleSetPokemonFree(name: string): void {
+    //update local storage.
     let currentTrainer = JSON.parse(
       localStorage.getItem('currentTrainer') || '{}'
     );
-    console.log('popping:', name);
+    //remove particular pokemon.
     const index = currentTrainer.pokemon.indexOf(name);
     currentTrainer.pokemon.splice(index, 1);
     localStorage.setItem('currentTrainer', JSON.stringify(currentTrainer));
 
-    //update API
-    this.trainerService.updateTrainer(
+    //update API.
+    this.trainersservice.updateTrainer(
       JSON.parse(localStorage.getItem('currentTrainer') || '{}')
     );
-
-    console.log(`You set ${name} free!!`);
   }
-
+  //navbar link to navigate to catalogue page.
   public gotoCatalogue(): void {
     this.router.navigate(['catalogue']);
   }
-
+  //handler that help to see if a pokemon is in the users collection.
   public checkIfCaught(name: string): boolean | undefined {
-    let trainer: Trainer | null = this.trainerService.trainer();
+    let trainer: Trainer | null = this.trainersservice.trainer();
     return trainer?.pokemon.includes(name);
   }
 }

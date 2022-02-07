@@ -11,7 +11,6 @@ import { CataloguePageComponent } from './catalogue-page/catalogue-page.componen
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 @NgModule({
@@ -27,7 +26,6 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    CarouselModule.forRoot(),
     ButtonsModule.forRoot(),
   ],
   providers: [],

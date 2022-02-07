@@ -6,17 +6,12 @@ import { PokemonObject, PokemonInfo } from '../models/pokemon.model';
   providedIn: 'root',
 })
 export class PokemonsService {
-  private _pokemons: PokemonObject = {
-    count: 0,
-    next: '',
-    previous: null,
-    results: [],
-  };
   private _error = '';
   private _pokemonlist: PokemonInfo[] | undefined = [];
 
   constructor(private readonly http: HttpClient) {}
 
+  //Get list of pokemons from API and save the result in local storage.
   public fetchPokemonsFromAPI(): void {
     console.log('fetching pokemons from api');
     this.http
@@ -33,7 +28,7 @@ export class PokemonsService {
         }
       );
   }
-
+  //Create a list of pokemons with an imageurl and id besides the name
   public getPokemonInfo(): PokemonInfo[] | undefined {
     this._pokemonlist = [];
 

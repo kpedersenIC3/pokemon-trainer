@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TrainersService } from '../services/trainers.service';
-import { Trainer } from '../models/trainer.model';
 import { PokemonsService } from '../services/pokemons.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-landing-page',
@@ -18,20 +16,25 @@ export class LandingPageComponent implements OnInit {
     private readonly pokemonsservice: PokemonsService
   ) {}
 
+  // When Mounting the landing page, get pokemons from API and save
+  // in sessionStorage for future use.
+  // Also check if user already exists in localStorage and redirect to
+  // catalogue page if true.
   ngOnInit(): void {
-    console.log('landing page loading');
     //get pokemons
     this.pokemonsservice.fetchPokemonsFromAPI();
 
-    //if user in localStorage and api
+    //if user in localStorage redirect to catalogue page.
     if (localStorage.getItem('currentTrainer') !== null) {
-      console.log('trainer exists in localStorage');
       this.router.navigate(['catalogue']);
     }
   }
 
+  //Handle the login. Fetches user from input from trainer API.
   public onTrainerLogIn(createForm: NgForm): void {
-    console.log('logging in');
-    this.trainersservice.fetchTrainer(createForm.value.username);
+    this.trainersservice.fetchTrainer(
+      createForm.value.username,
+      this.router.url
+    );
   }
 }
