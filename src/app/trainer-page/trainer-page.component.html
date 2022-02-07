@@ -1,37 +1,58 @@
-<nav class="navbar navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="https://youtu.be/rg6CiPI6h2g?t=6">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="" class="d-inline-block align-text-top">
-      </a>
-      <h1>{{currenttrainer.username}}'s Collection</h1>
-      <ul class="navbar-nav" routerLinkActive="active">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/catalogue">Go Catch Pokemons</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" role="button" (click)="handleLogOut()">Log Out</a>
-          </li>
-      </ul>
-      
-    </div>
-  </nav>
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="https://youtu.be/rg6CiPI6h2g?t=6">
+      <img
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
+        alt=""
+        class="d-inline-block align-text-top"
+      />
+    </a>
+    <h1>{{ currenttrainer.username }}'s Collection</h1>
+    <ul class="navbar-nav" routerLinkActive="active">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" routerLink="/catalogue"
+          >Go Catch Pokemons</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link active"
+          aria-current="page"
+          role="button"
+          (click)="handleLogOut()"
+          >Log Out</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
 
-
-  <div class="container">
-    <div class="card-group text-center">
-      <div class="row">
-          <ng-container *ngFor="let pokemon of pokemoninfo">
-            <ng-container *ngIf="checkIfCaught(pokemon.name); then caught;"></ng-container>
-              <ng-template #caught>
-                <div class="card col-md-2">
-                  <img class="card-img-top" [src]="pokemon.imageurl" [alt]="pokemon.name">
-                  <div class="card-body">
-                    <h5 class="text-center">{{pokemon.name}}</h5>         
-                    <button class="btn btn-danger" (click)="handleSetPokemonFree(pokemon.name)">Set Free!</button>
-                  </div>
-                </div>
-              </ng-template> 
-        </ng-container>
-      </div>
+<div class="container">
+  <div class="card-group text-center">
+    <div class="row">
+      <ng-container *ngFor="let pokemon of pokemoninfo">
+        <ng-container
+          *ngIf="checkIfCaught(pokemon.name); then caught"
+        ></ng-container>
+        <ng-template #caught>
+          <div class="card col-md-2">
+            <img
+              class="card-img-top"
+              [src]="pokemon.imageurl"
+              [alt]="pokemon.name"
+            />
+            <div class="card-body">
+              <h5 class="text-center">{{ pokemon.name }}</h5>
+              <button
+                class="btn btn-danger"
+                (click)="handleSetPokemonFree(pokemon.name)"
+              >
+                Set Free!
+              </button>
+            </div>
+          </div>
+        </ng-template>
+      </ng-container>
     </div>
   </div>
+</div>
