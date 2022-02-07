@@ -20,6 +20,8 @@ export class TrainerPageComponent implements OnInit {
   ngOnInit(): void {
     if (localStorage.getItem('currentTrainer') === null) {
       this.router.navigate(['landing']);
+    } else {
+      this.trainer;
     }
   }
 
@@ -46,7 +48,9 @@ export class TrainerPageComponent implements OnInit {
     let currentTrainer = JSON.parse(
       localStorage.getItem('currentTrainer') || '{}'
     );
-    currentTrainer.pokemon.pop(name);
+    console.log('popping:', name);
+    const index = currentTrainer.pokemon.indexOf(name);
+    currentTrainer.pokemon.splice(index, 1);
     localStorage.setItem('currentTrainer', JSON.stringify(currentTrainer));
 
     //update API
@@ -62,9 +66,7 @@ export class TrainerPageComponent implements OnInit {
   }
 
   public checkIfCaught(name: string): boolean | undefined {
-    let currenttrainer = JSON.parse(
-      localStorage.getItem('currentTrainer') || '{}'
-    );
-    return currenttrainer.pokemon.includes(name);
+    let trainer: Trainer | null = this.trainerService.trainer();
+    return trainer?.pokemon.includes(name);
   }
 }
