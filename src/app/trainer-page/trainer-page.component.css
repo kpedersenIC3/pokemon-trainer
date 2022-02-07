@@ -3,9 +3,14 @@
 }
 
 .container {
+  margin-left: 90px;
   margin-bottom: 11%;
 }
 
 .nav-item {
   margin-right: 20px;
+}
+
+.col-md-2 {
+  min-width: 180px;
 }

@@ -1,6 +1,10 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PokemonObject, PokemonInfo } from '../models/pokemon.model';
+import {
+  PokemonObject,
+  PokemonInfo,
+  PokemonStats,
+} from '../models/pokemon.model';
 
 @Injectable({
   providedIn: 'root',
@@ -28,6 +32,12 @@ export class PokemonsService {
         }
       );
   }
+
+  // public fetchPokemonStats(id: number): void {
+  //   this.http
+  //     .get<PokemonStats>(`https://pokeapi.co/api/v2/pokemon/${id}`)
+  //     .subscribe((pokestats: PokemonStats) => {});
+  // }
   //Create a list of pokemons with an imageurl and id besides the name
   public getPokemonInfo(): PokemonInfo[] | undefined {
     this._pokemonlist = [];

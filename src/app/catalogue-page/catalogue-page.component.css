@@ -9,3 +9,11 @@
 .card {
   margin: 5px;
 }
+
+.container {
+  margin-left: 90px;
+}
+
+.col-md-2 {
+  min-width: 180px;
+}

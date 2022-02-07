@@ -71,7 +71,7 @@ export class TrainersService {
         this._httpOptions
       )
       .subscribe((data) => {
-        this.fetchTrainer(data.username, '');
+        this.fetchTrainer(data.username, '/landing');
       });
   }
 

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="https://youtu.be/rg6CiPI6h2g?t=6">
         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="" class="d-inline-block align-text-top">
@@ -16,10 +16,11 @@
     </div>
   </nav>
 
+
   <div class="container">
     <div class="card-group text-center">
       <div class="row">
-          <div *ngFor="let pokemon of pokemoninfo">
+          <ng-container *ngFor="let pokemon of pokemoninfo">
             <ng-container *ngIf="checkIfCaught(pokemon.name); then caught;"></ng-container>
               <ng-template #caught>
                 <div class="card col-md-2">
@@ -30,7 +31,7 @@
                   </div>
                 </div>
               </ng-template> 
-        </div>
+        </ng-container>
       </div>
     </div>
   </div>
