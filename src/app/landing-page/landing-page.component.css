@@ -1,5 +1,6 @@
 .user-input-error {
-  color: rgb(255, 36, 36);
+  /* color: rgb(255, 36, 36); */
+  font-weight: bold;
 }
 
 .sign-in-button {

@@ -20,6 +20,17 @@
   #createForm="ngForm"
   (ngSubmit)="onTrainerLogIn(createForm)"
 >
+  <div
+    class="user-input-error"
+    *ngIf="
+      username.errors &&
+      username.invalid &&
+      (username.dirty || username.touched)
+    "
+  >
+    <p *ngIf="username.errors['required']">Username required</p>
+    <p *ngIf="username.errors['minlength']">Username is too short</p>
+  </div>
   <div class="form-group">
     <label for="username">Enter username to sign in:</label>
     <input
@@ -44,18 +55,7 @@
       type="submit"
       [disabled]="createForm.invalid"
     >
-      Go Catch'em All
+      Go Catch 'Em All
     </button>
-  </div>
-  <div
-    class="user-input-error"
-    *ngIf="
-      username.errors &&
-      username.invalid &&
-      (username.dirty || username.touched)
-    "
-  >
-    <p *ngIf="username.errors['required']">Username required</p>
-    <p *ngIf="username.errors['minlength']">Username is too short</p>
   </div>
 </form>
