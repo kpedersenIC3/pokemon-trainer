@@ -8,7 +8,9 @@ html {
 }
 body {
   min-height: 100%;
-  font-family: "Sanchez", serif;
+  /* font-family: "Sanchez", serif; */
+  font-family: "Press Start 2P", cursive;
+  text-shadow: 0 0 4px white, 0 0 8px purple;
   background-image: linear-gradient(
     180deg,
     rgb(209, 38, 38) 48%,
@@ -22,16 +24,16 @@ p,
 input,
 form,
 button {
-  font-family: "Sanchez", serif;
+  /* font-family: "Sanchez", serif; */
 }
 
-.button-caught {
+/* .button-caught {
   background-color: red;
 }
 
 .button-free {
   background-color: green;
-}
+} */
 
 img {
   width: 60px;
