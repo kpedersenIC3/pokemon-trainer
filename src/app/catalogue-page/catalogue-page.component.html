@@ -14,19 +14,20 @@
     
   </div>
 </nav>
-
+<button class="btn btn-dark" popover="Well 'ello there">Info</button>
 <div class="container">
   <div class="card-group text-center">
     <div class="row">
       <div class="card col-md-2" *ngFor="let pokemon of pokemoninfo">
         <img class="card-img-top" [src]="pokemon.imageurl" [alt]="pokemon.name">
-        <div class="card-body text-center">
+        <div class="card-body text-center" style="overflow: auto">
           <ng-container *ngIf="checkIfCaught(pokemon.name); then caught; else free"></ng-container>
           <ng-template #caught>
           <button class="btn btn-danger" (click)="handleCaughtPokemon(pokemon.name)">{{ pokemon.name }} is caught!</button>
           </ng-template>
           <ng-template #free>
           <button class="btn btn-success" (click)="handleCatchPokemon(pokemon.name)">Catch {{ pokemon.name }}!</button>
+          
           </ng-template>
         </div>
       </div>

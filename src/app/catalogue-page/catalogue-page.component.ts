@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PokemonInfo } from '../models/pokemon.model';
+import { PokemonInfo, stat } from '../models/pokemon.model';
 import { Trainer } from '../models/trainer.model';
 import { PokemonsService } from '../services/pokemons.service';
 import { TrainersService } from '../services/trainers.service';
@@ -29,6 +29,7 @@ export class CataloguePageComponent implements OnInit {
       );
     }
   }
+
   //Handler for catch pokemon button. Updates the localStorage with caught pokemon,
   //then updates the trainer API.
   public handleCatchPokemon(name: string): void {

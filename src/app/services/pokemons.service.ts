@@ -4,6 +4,7 @@ import {
   PokemonObject,
   PokemonInfo,
   PokemonStats,
+  PokeAPI,
 } from '../models/pokemon.model';
 
 @Injectable({
@@ -12,6 +13,7 @@ import {
 export class PokemonsService {
   private _error = '';
   private _pokemonlist: PokemonInfo[] | undefined = [];
+  private _pokemonstats: PokemonStats[] = [];
 
   constructor(private readonly http: HttpClient) {}
 
@@ -33,11 +35,16 @@ export class PokemonsService {
       );
   }
 
-  // public fetchPokemonStats(id: number): void {
-  //   this.http
-  //     .get<PokemonStats>(`https://pokeapi.co/api/v2/pokemon/${id}`)
-  //     .subscribe((pokestats: PokemonStats) => {});
-  // }
+  public fetchPokemonInfoByName(name: string): PokemonStats[] {
+    this.http
+      .get<PokeAPI>(`https://pokeapi.co/api/v2/pokemon/` + name)
+      .subscribe((pokemoninfo) => {
+        this._pokemonstats = [...pokemoninfo.stats];
+      });
+
+    return this._pokemonstats;
+  }
+
   //Create a list of pokemons with an imageurl and id besides the name
   public getPokemonInfo(): PokemonInfo[] | undefined {
     this._pokemonlist = [];
@@ -54,6 +61,7 @@ export class PokemonsService {
       pokemoninfo.name = pokemon.name;
       pokemoninfo.id = pokeid;
       pokemoninfo.imageurl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeid}.png`;
+
       this._pokemonlist.push(pokemoninfo);
     }
     return this._pokemonlist;

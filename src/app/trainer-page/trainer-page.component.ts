@@ -16,6 +16,7 @@ export class TrainerPageComponent implements OnInit {
     private readonly pokemonsservice: PokemonsService,
     private readonly router: Router
   ) {}
+  isCollapsed = false;
   //On page load redirect to
   // landing page if user is not in localStorage, otherwise get
   // the trainer from trainerService
@@ -23,6 +24,7 @@ export class TrainerPageComponent implements OnInit {
     if (localStorage.getItem('currentTrainer') === null) {
       this.router.navigate(['landing']);
     } else {
+      console.log(this.pokemonsservice.fetchPokemonInfoByName('pikachu'));
       this.trainer;
     }
   }

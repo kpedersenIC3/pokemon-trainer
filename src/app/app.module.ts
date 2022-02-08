@@ -12,6 +12,9 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { PopoverModule } from 'ngx-bootstrap/popover';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
     FormsModule,
     BrowserAnimationsModule,
     ButtonsModule.forRoot(),
+    TooltipModule.forRoot(),
+    PopoverModule.forRoot(),
+    CollapseModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
