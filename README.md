@@ -15,6 +15,7 @@ The app is deployed live at [Heroku](https://pokemon-trainer-0905.herokuapp.com/
 ## Maintainers
 
 Kasper Nielsen (https://github.com/kaspernie, https://gitlab.com/kaspernie)
+
 Kasper Pedersen (https://github.com/kpedersenIC3)
 
 # From the original Angular README
