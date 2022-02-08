@@ -18,3 +18,7 @@ h5 {
 .col-md-2 {
   min-width: 180px;
 }
+
+.well {
+  font-weight: bold;
+}

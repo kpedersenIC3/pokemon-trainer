@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Trainer } from '../models/trainer.model';
 import { PokemonsService } from '../services/pokemons.service';
 import { TrainersService } from '../services/trainers.service';
-import { PokemonInfo } from '../models/pokemon.model';
+import { PokemonInfo, PokemonStats } from '../models/pokemon.model';
 
 @Component({
   selector: 'app-trainer-page',
@@ -16,6 +16,7 @@ export class TrainerPageComponent implements OnInit {
     private readonly pokemonsservice: PokemonsService,
     private readonly router: Router
   ) {}
+  isCollapsed = true;
   //On page load redirect to
   // landing page if user is not in localStorage, otherwise get
   // the trainer from trainerService
@@ -30,6 +31,7 @@ export class TrainerPageComponent implements OnInit {
   get trainer(): Trainer | null {
     return this.trainersservice.trainer();
   }
+
   //getter for the trainer in localStorage
   get currenttrainer(): Trainer {
     return JSON.parse(localStorage.getItem('currentTrainer') || '{}');

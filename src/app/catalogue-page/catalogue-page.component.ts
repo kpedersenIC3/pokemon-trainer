@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PokemonInfo } from '../models/pokemon.model';
+import { PokemonInfo, stat } from '../models/pokemon.model';
 import { Trainer } from '../models/trainer.model';
 import { PokemonsService } from '../services/pokemons.service';
 import { TrainersService } from '../services/trainers.service';
@@ -29,20 +29,37 @@ export class CataloguePageComponent implements OnInit {
       );
     }
   }
+
   //Handler for catch pokemon button. Updates the localStorage with caught pokemon,
   //then updates the trainer API.
-  public handleCatchPokemon(name: string): void {
-    //update localStorage.
-    let currentTrainer = JSON.parse(
-      localStorage.getItem('currentTrainer') || '{}'
-    );
-    currentTrainer.pokemon.push(name);
-    localStorage.setItem('currentTrainer', JSON.stringify(currentTrainer));
+  public handleCatchPokemon(name: string, speed: number): void {
+    //See if it got away or not
+    let trainerspeed = Math.floor(Math.random() * 101);
+    if (trainerspeed > speed) {
+      //update localStorage.
+      let currentTrainer = JSON.parse(
+        localStorage.getItem('currentTrainer') || '{}'
+      );
+      currentTrainer.pokemon.push(name);
+      localStorage.setItem('currentTrainer', JSON.stringify(currentTrainer));
 
-    //update API with new localStorage.
-    this.trainersservice.updateTrainer(
-      JSON.parse(localStorage.getItem('currentTrainer') || '{}')
-    );
+      //update API with new localStorage.
+      this.trainersservice.updateTrainer(
+        JSON.parse(localStorage.getItem('currentTrainer') || '{}')
+      );
+    } else {
+      alert(
+        'YOU SNOOZE, YOU LOOSE! \n' +
+          'Too slow, ' +
+          name +
+          ' got away!! \n' +
+          name +
+          ' has ' +
+          speed +
+          ' speed against your ' +
+          String(trainerspeed)
+      );
+    }
   }
   //Alert user if user tries to catch already caught pokemon.
   public handleCaughtPokemon(name: string): void {
