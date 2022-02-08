@@ -14,8 +14,12 @@ export interface PokemonInfo {
   name: string;
   id: number;
   imageurl: string;
+  stats: PokemonStats[];
 }
-
+export interface PokemonStatsList {
+  name: string;
+  stats: PokemonStats[];
+}
 export interface PokemonStats {
   base_stat: number;
   effort: number;

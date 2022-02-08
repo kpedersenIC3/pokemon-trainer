@@ -9,6 +9,10 @@
           <a class="nav-link active" aria-current="page" routerLink="/catalogue">Go Catch Pokemons</a>
         </li>
         <li class="nav-item">
+        <a class="nav-link active" aria-current="page" role="button" (click)="isCollapsed = !isCollapsed"
+        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">Show Info</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link active" aria-current="page" role="button" (click)="handleLogOut()">Log Out</a>
           </li>
       </ul>
@@ -27,6 +31,13 @@
                   <div class="card-body">
                     <h5 class="text-center">{{pokemon.name}}</h5>         
                     <button class="btn btn-danger" (click)="handleSetPokemonFree(pokemon.name)">Set Free!</button>
+            <hr>
+            <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+              <div class="well well-lg card card-block card-header" *ngFor="let stat of pokemon.stats">
+                  {{stat.stat.name}} : {{stat.base_stat}}
+              </div>
+            </div>
+
                   </div>
                 </div>
               </ng-template> 
